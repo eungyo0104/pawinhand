@@ -47,30 +47,36 @@ header{
   justify-content: space-between;
   align-items: center;
 }
-.logo{
-  height: 50px;
-  width: 180px;
-}
-.logo img{
-  width: inherit;
-  height: inherit;
-  object-fit: cover;
-  object-position: left;
-}
+.logo{width: 200px;}
+.logo img{width: inherit;}
 .gnb{
   display: flex;
-  column-gap: 50px;
+  column-gap: 30px;
 }
 .gnb a{
+  display: block;
+  width: max-content;
+  position: relative;
   font-size: 16px;
   color: #333;
   font-weight: 500;
   transition: 0.35s;
+  padding: 0 10px;
 }
-.gnb a:hover{
-  color: darkorange;
-  transform: scale(1.05);
+.gnb a:hover{color: white;}
+.gnb a:before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height:23px;
+  background-color: darkorange;
+  z-index: -1;
+  transition: 0.5s;
 }
+.gnb a:hover:before{width: 100%;}
 
 /* Main__________________________________________________________________________ */
 main{
@@ -117,24 +123,31 @@ main:hover h2{
 main h2 b{transition: 0.5s;}
 main:hover h2 b{color: darkorange;}
 
-main h3{
+main .reveal-title{
   position: absolute;
-  top: 80%;
+  top: 70%;
+  margin: 80px 0 40px;
+  height: max-content;
+  overflow: hidden;
+}
+
+main h3{
   font-size: 36px;
   color: #fff;
-  opacity: 0.3;
   transition: 0.5s;
 }
 main h3 b{
-  display: inline-block;
   color: darkorange;
-  font-size: 48px;
   font-weight: bold;
-  opacity: 0;
-  transition: 0.5s;
-  transform: translateY(5px);
+} 
+
+@keyframes reveal-ani {
+  0% {transform: translateY(-100%);}
+  100% {transform: translateY(0);}
 }
-main:hover h3, main:hover h3 b{opacity: 1;}
+main:hover h3{
+  animation: reveal-ani 1s forwards;
+}
 
 @keyframes scroll-ani{
   0%, 100% {opacity: 0;}
@@ -164,115 +177,106 @@ main span:nth-of-type(3){
 .section-inner{
   width: 1300px;
   margin: auto;
-  padding: 150px 0;
+  padding: 120px 0;
 }
 section h2{
   padding: 20px 0;
   color: #333;
-  font-size: 40px;
+  font-size: 36px;
 }
 
 section h3{
-  font-size: 20px;
-  margin-bottom: 50px;
+  font-size: 18px;
   color: #666;
 }
 
 /* Section-01_______________________________ */
+
 .content1{
-  margin: 150px 0 40px;
-  height: max-content;
-  overflow: hidden;
+  font-size: 22px;
+  font-weight: 600;
+  color: #555;
+  line-height: 2;
+  position: relative; 
+  margin: 150px 0;
 }
 .content1 div{
-  font-size: 36px;
-  font-family: GmS_M, sans-serif;
-  color: white;
-  display: inline-block;
-  height: max-content;
-  transition: 0.5s;
-  padding: 30px 50px;
-  border-radius: 50px;
-  background-color: steelblue;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 200px;
+  color: darkorange;
+  animation: blink-ani 2s infinite alternate;
 }
-@keyframes reveal-ani {
-  0% {transform: translateY(100%);}
-  100% {transform: translateY(0);}
-}
-#s1:hover .content1 div{
-  animation: reveal-ani 1.5s forwards;
+@keyframes blink-ani {
+  0%, 100%{opacity: 0.3;}
+  50% {opacity: 0;}
 }
 
 .content2{
-  font-size: 18px;
-  color: slategrey;
-  line-height: 2;
-  margin-bottom: 150px;
-}
-
-.content3{
   display: flex;
   justify-content: space-between;
-  margin-bottom: 250px;
+  margin-bottom: 50px;
 }
-.content3 .intro-item{
+.content2 .intro-item{
   width: 280px;
   height: 280px;
   transition: 0.35s;
   position: relative;
 }
-.content3 .intro-item:before{ 
+.content2 .intro-item:before{ 
   content: attr(data-text);
   position: absolute;
   bottom: -30px;
   right: 0;
   font-size: 18px;
 }
-.content3 .intro-item span{
+.content2 .intro-item span{
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-.content3 .intro-item span:nth-of-type(1):before,
-.content3 .intro-item span:nth-of-type(1):after,
-.content3 .intro-item span:nth-of-type(2):before,
-.content3 .intro-item span:nth-of-type(2):after{
+.content2 .intro-item span:nth-of-type(1):before,
+.content2 .intro-item span:nth-of-type(1):after,
+.content2 .intro-item span:nth-of-type(2):before,
+.content2 .intro-item span:nth-of-type(2):after{
   content: '';
   position: absolute;
-  background-color: darkorange;
+  background-color: lightblue ;
   transition: 0.35s;
 }
-.content3 .intro-item span:nth-of-type(1):before{
+.content2 .intro-item span:nth-of-type(1):before{
   top: 0;
   left: 0;
   width: 20px;
   height: 2px;
 }
-.content3 .intro-item span:nth-of-type(1):after{
+.content2 .intro-item span:nth-of-type(1):after{
   top: 0;
   left: 0;
   height: 20px;
   width: 2px;
 }
-.content3 .intro-item span:nth-of-type(2):before{
+.content2 .intro-item span:nth-of-type(2):before{
   bottom: 0;
   right: 0;
   width: 20px;
   height: 2px;
 }
-.content3 .intro-item span:nth-of-type(2):after{
+.content2 .intro-item span:nth-of-type(2):after{
   bottom: 0;
   right: 0;
   height: 20px;
   width: 2px;
 }
-.content3 .intro-item:hover span:nth-of-type(1):before{width: 100%;}
-.content3 .intro-item:hover span:nth-of-type(1):after{height: 100%;}
-.content3 .intro-item:hover span:nth-of-type(2):before{width: 100%;}
-.content3 .intro-item:hover span:nth-of-type(2):after{height: 100%;}
-.content3 .intro-item img{
+.content2 .intro-item:hover span:nth-of-type(1):before{width: 100%;}
+.content2 .intro-item:hover span:nth-of-type(1):after{height: 100%;}
+.content2 .intro-item:hover span:nth-of-type(2):before{width: 100%;}
+.content2 .intro-item:hover span:nth-of-type(2):after{height: 100%;}
+.content2 .intro-item img{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -280,7 +284,7 @@ section h3{
   width: 90%;
   height: 90%;
 }
-.content3 .intro-item .caption{
+.content2 .intro-item .caption{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -290,44 +294,20 @@ section h3{
   align-items: center;
   width: 80%;
   height: 80%;
-  background-color: darkorange;
+  background-color:darkorange;
   border-radius: 0 20% 0 20%;
   color: white;
   padding: 50px 30px;
   opacity: 0;
   transition: 0.35s;
 }
-.content3 .intro-item:hover .caption{opacity: 1;}
-.content3 .intro-item .caption p{
+.content2 .intro-item:hover .caption{opacity: 1;}
+.content2 .intro-item .caption p{
   transform: translateY(10px);
   font-weight: 400;
   font-size: 16px;
   line-height: 2;
   padding: 10px 0 30px;
-}
-
-.content4{
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-  line-height: 2;
-  position: relative; 
-  margin: 300px 0 150px;
-}
-.content4 div{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-}
-.content4 div{
-  font-size: 200px;
-  color: darkorange;
-  animation: blink-ani 2s infinite alternate;
-}
-@keyframes blink-ani {
-  0%, 100%{opacity: 0.3;}
-  50% {opacity: 0;}
 }
 
 /* Section-02_______________________________ */
@@ -338,6 +318,7 @@ section h3{
   border-radius: 50px;
   background-color: white;
   padding: 100px;
+  margin-top: 80px;
 }
 .s2-article{
   width: 100%;
@@ -387,22 +368,41 @@ section h3{
   font-size: 18px;
   transition: 0.35s;
 }
-.default-num{color: crimson;}
+.default-num{color: tomato;}
 .default-title{color: #666;}
 .default-article{opacity: 1;}
 .s2-article:hover .default-num{color: #ccc;}
 .s2-article:hover .default-title{color: #ccc;}
 .s2-article:hover .default-article{opacity: 0;}
-.act-list:hover .act-num{color: crimson}
+.act-list:hover .act-num{color: tomato}
 .act-list:hover .act-title{color: #666} 
 .act-list:hover .act-right{opacity: 1;}
 
 /* Section-03_______________________________ */
-#s3{background-color: antiquewhite;}
+
+.graph-title{
+  display: inline-block;  
+  margin-top: 80px;
+  border-radius: 30px;
+}
+.graph-title h4{
+  font-size: 18px;
+  font-weight: 400;
+  color: #444;
+  /* border-top: 1px solid darkorange;
+  border-bottom: 1px solid darkorange; */
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 140, 0, 0.137) 50%, transparent 100%);
+  padding: 10px 120px;
+}
+.graph-title h4 span{
+  color: #666;
+  font-size: 16px;
+}
+
 .graphBar{
   width: 1060px;
   height: 500px;
-  margin: 100px auto;
+  margin: 50px auto;
   border-bottom: 1px solid #000;
   position: relative;
 }
@@ -426,152 +426,146 @@ section h3{
   animation: height-ani 3s forwards;
 }
 .graphBar .graph .item{position: absolute;}
-/* .item:before, .item:after{
+.item:before, .item:after{
   position: absolute;
-  top: -4px;
-} */
+  transform: translateX(-50%);
+}
+.item:before{
+  bottom: -50px;
+  font-weight: 500;
+}
+.item:after{top: -30px;}
 
 .graphBar .graph .item1{
   left: 70px;
   height: 255px;
   background-color: steelblue;
 }
-/* .item1:before{
-  content: '보호중';
-  left: -60px;
-}
-.item1:after{
-  content: '13,417마리';
-  right: -100px;
-} */
+.item1:before{content: '보호중';}
+.item1:after{content: '13,417마리';}
 .graphBar .graph .item2{
   left: 210px;
   height: 345px;
   background-color: palevioletred
 }
-/* .item2:before{
-  content: '입양';
-  left: -60px;
-}
-.item2:after{
-  content: '18,587마리';
-  right: -100px;
-} */
+.item2:before{content: '입양';}
+.item2:after{content: '18,587마리';}
 .graphBar .graph .item3{
   left: 350px;
   height: 165px;
   background-color: teal
 }
-/* .item3:before{
-  content: '반환';
-  left: -60px;
-}
-.item3:after{
-  content: '9,051마리';
-  right: -100px;
-} */
+.item3:before{content: '반환';}
+.item3:after{content: '9,051마리';}
 .graphBar .graph .item4{
   left: 490px;
   height: 405px;
   background-color: salmon;
 }
-/* .item4:before{
-  content: '자연사';
-  left: -60px;
-}
-.item4:after{
-  content: '21,434마리';
-  right: -100px;
-} */
+.item4:before{content: '자연사';}
+.item4:after{content: '21,434마리';}
 .graphBar .graph .item5{
   left: 630px;
   height: 255px;
   background-color: cadetblue
 }
-/* .item5:before{
-  content: '안락사';
-  left: -60px;
-}
-.item5:after{
-  content: '13,369마리';
-  right: -100px;
-} */
+.item5:before{content: '안락사';}
+.item5:after{content: '13,369마리';}
 .graphBar .graph .item6{
   left: 770px;
   height: 15px;
   background-color: rosybrown;
 }
-/* .item6:before{
-  content: '방사';
-  left: -60px;
-}
-.item6:after{
-  content: '1,023마리';
-  right: -100px;
-} */
+.item6:before{content: '방사';}
+.item6:after{content: '1,023마리';}
 .graphBar .graph .item7{
   left: 910px;
   height: 60px;
   background-color: darkkhaki;
 }
-/* .item7:before{
-  content: '기증';
-  left: -60px;
+.item7:before{content: '기증';}
+.item7:after{content: '2,937마리';}
+
+.s3-content{
+  font-size: 18px;
+  color: slategrey;
+  line-height: 2;
+  margin-top: 150px;
 }
-.item7:after{
-  content: '2,937마리';
-  right: -100px;
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Section-04_______________________________ */
-#s4{background-color: white;}
+#s4{background-color: wheat;}
+
+.adopt-items{
+  margin: 80px 0;
+  padding: 50px 0;
+  width: inherit;
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+}
+.flow-items{
+  display: flex;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  animation: flow-ani 20s linear infinite alternate;
+}
+.flow-items:hover{animation-play-state: paused;}
 .adopt-item{
   width: 250px;
   height: 350px;
-  border: 1px solid #ccc;
+  margin: 0 20px;
+  border: 10px solid white;
+  background-color: white;    
 }
-.adopt-item img{
+.adopt-item img{width: 100%;}
+.adopt-item .adopt-name{margin: 5px 0;}
+.adopt-item ion-icon{color: lightsalmon;}
+.adopt-item p{
+  display: inline-block;
   width: 100%;
+  overflow: hidden;
+  white-space: wrap;
+  font-size: 14px;
+  color: #666;
 }
-
-
+@keyframes flow-ani{  /* 오른쪽으로 흘러감 */
+  0%{transform: translateX(0);}
+  100%{transform: translateX(-45%);}
+}
+.adopt-items:before,
+.adopt-items:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 10px;
+  height: 350px;
+  z-index: 2;
+  background: linear-gradient(to right, wheat 0%, transparent 100%);
+}
+.adopt-items:before{left: 0;}
+.adopt-items:after{
+  right: 0;
+  transform: rotateY(180deg);
+}
+.more-review{
+  display: inline-block;
+  background-color: darkorange;
+  border: 3px solid white;
+  color: white;
+  padding: 10px 50px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: 0.35s;
+}
+.more-review:hover{
+  background-color: tomato;
+  color: white;
+}
 
 /* Footer__________________________________________________________________________ */
 footer{
@@ -631,6 +625,6 @@ footer{
   transition: 0.5s;
 }
 .footer-icons a:hover .bx{
-  color: darkorange;
+  color: tomato;
   transform: rotateY(360deg);
 }
